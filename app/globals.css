@@ -1,42 +1,122 @@
+@layer theme, base, antd, components, utilities;
+
+@import "tailwindcss";
+
+@theme {
+  /* Font Sizes */
+
+  --text-icon: 14px; /* Added from Ant Design token for consistency */
+
+  /* Colors */
+  --color-primary: #59a1a5;
+  --color-error: #d82020;
+  --color-bg: #ffffff;
+  --color-bg-layout: #f9f9f9;
+  --color-text: #121212;
+  --color-text-secondary: #a7a7a7;
+  --color-text-tertiary: #787878;
+  --color-border: #d3d3d3;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-base: 6px;
+  --radius-lg: 8px;
+
+  /* Spacing */
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Custom Ant Design Layout height for Header */
+  --header-height: 64px; /* Defined in Ant Design theme.components.Layout */
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Font Sizes */
+  --font-size-sm: 12px;
+  --font-size-base: 16px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-h1: 32px;
+  --font-size-h2: 24px;
+  --font-size-h3: 20px;
+  --font-size-h4: 16px;
+  --font-size-h5: 14px;
+
+  /* Colors */
+  --color-primary: #59a1a5;
+  --color-error: #d82020;
+  --color-bg: #ffffff;
+  --color-bg-layout: #f9f9f9;
+  --color-text: #121212;
+  --color-text-secondary: #a7a7a7;
+  --color-text-tertiary: #787878;
+  --color-border: #d3d3d3;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-base: 6px;
+  --radius-lg: 8px;
+
+  /* Spacing */
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer antd {
+  .ant-menu-title-content {
+    @apply text-[--color-text-tertiary];
+  }
+
+  .ant-menu-item {
+    @apply !p-0;
+  }
+
+  .ant-menu-item-selected .ant-menu-title-content > a {
+    @apply !text-[--color-primary];
+  }
+
+  .ant-menu-item:hover .ant-menu-title-content {
+    @apply text-[--color-primary];
+  }
+
+  .ant-modal-mask {
+    @apply !bg-black/25;
+  }
+
+  .ant-tabs-tab {
+    @apply !min-w-[116px] !m-0 !justify-center;
+  }
+
+  .ant-select-selector {
+    @apply !py-1 !px-[12px] !rounded-[6px];
+  }
+
+  .ant-form-item-required {
+    @apply !font-bold;
+  }
+
+  .ant-menu-item-group-title {
+    @apply !font-bold;
+  }
+
+  :where(.css-dev-only-do-not-override-1dnkeqz).ant-input-affix-wrapper
+    > input.ant-input {
+    @apply !text-[14px];
+  }
+  :where(.css-dev-only-do-not-override-1dnkeqz).ant-select-single:not(
+      .ant-select-customize-input
+    )
+    .ant-select-selector {
+    @apply !py-[2px] !px-[6px] placeholder:text-[14px];
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
+/* .ant-select-selection-item {
+  @apply !bg-red-400;
+} */
