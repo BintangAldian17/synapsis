@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Form, Input, Select, Button, App } from "antd";
 import { useQueryClient } from "@tanstack/react-query";
 import { API_ENDPOINT } from "@/libs/services/axios";
@@ -48,15 +48,6 @@ const FormPost: React.FC<FormPostProps> = ({
   const { data: userData } = useUserById(userId ?? 0, {
     enabled: !!userId,
   });
-
-  const transformedInitialValues = initialValues
-    ? {
-        ...initialValues,
-        user_id: userData
-          ? { value: userData.id, label: userData.name }
-          : undefined,
-      }
-    : {};
 
   const optionsUsers = useMemo(() => {
     if (usersData && usersData.length > 0) {
@@ -126,19 +117,37 @@ const FormPost: React.FC<FormPostProps> = ({
     });
   };
 
-  const onSubmit = (values: PostPayload) => {
+  const onSubmit = (values: any) => {
+    const payload: PostPayload = {
+      ...values,
+      user_id: values.user_id?.value,
+    };
     if (type === "update") {
-      onUpdate(values);
+      onUpdate(payload);
     } else {
-      onCreate(values);
+      onCreate(payload);
     }
   };
+
+  useEffect(() => {
+    if (userData) {
+      console.log("RUN");
+      form.setFieldValue("user_id", {
+        label: userData.name,
+        value: userData.id,
+        key: userData.id,
+      });
+    }
+  }, [userData]);
 
   return (
     <Form
       layout="vertical"
       form={form}
-      initialValues={transformedInitialValues}
+      initialValues={{
+        title: initialValues?.title,
+        body: initialValues?.body,
+      }}
       onFinish={onSubmit}
       className="mt-1.5"
     >

@@ -8,7 +8,6 @@ type ModalContextType = {
   closeModal: () => void;
   toggleModal: () => void;
 };
-
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
