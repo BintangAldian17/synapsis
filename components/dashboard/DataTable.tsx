@@ -93,7 +93,7 @@ function DataTable<T extends Record<string, any>>({
 
     return dataToSort;
   }, [dataSource, tableParams.sortField, tableParams.sortOrder]);
-  console.log(total);
+
   return (
     <div className="w-full max-w-full overflow-x-auto">
       <Table<T>

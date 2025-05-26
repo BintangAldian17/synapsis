@@ -18,7 +18,6 @@ export const checkAccessToken = async (
   payload: UserPayload,
   access_token: string
 ) => {
-  console.log(access_token);
   try {
     const { data } = await api.put(`${API_ENDPOINT.USER}/${id}`, payload, {
       headers: {

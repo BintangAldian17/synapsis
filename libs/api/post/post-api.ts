@@ -11,7 +11,6 @@ export const getPosts = async (
       per_page: params?.limit,
       title: params?.title,
     });
-    console.log(queryParams);
     const { data, headers } = await authApi.get<Post[]>(API_ENDPOINT.POST, {
       params: queryParams,
     });

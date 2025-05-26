@@ -101,7 +101,6 @@ const FormPost: React.FC<FormPostProps> = ({
   };
 
   const onCreate = (values: PostPayload) => {
-    console.log(values);
     mutationCreatePost.mutate(values, {
       onSuccess: () => {
         message.success({
@@ -134,8 +133,6 @@ const FormPost: React.FC<FormPostProps> = ({
       onCreate(values);
     }
   };
-
-  console.log(transformedInitialValues);
 
   return (
     <Form

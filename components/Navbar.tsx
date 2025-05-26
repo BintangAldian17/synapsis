@@ -92,10 +92,6 @@ const Navbar = () => {
   const selectedKey = pathToKeyMap[pathname] || "1";
   const [isOpen, setIsOpen] = React.useState(true);
 
-  const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
-  };
-
   return (
     <div className="relative flex h-auto min-h-0  border-r border-[#d3d3d3] bg-[#f9f9f9]">
       <div
@@ -105,7 +101,6 @@ const Navbar = () => {
         )}
       >
         <Menu
-          onClick={onClick}
           selectedKeys={[selectedKey]}
           defaultOpenKeys={["dsh"]}
           mode="inline"
